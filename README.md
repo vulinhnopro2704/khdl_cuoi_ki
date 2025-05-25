@@ -40,9 +40,8 @@ Phân cụm và phân loại phân khúc giá của đồng hồ theo các thôn
 
 1. **Thu Thập Dữ Liệu**: 🕸️ Thu thập thông tin đồng hồ bằng web scraping
 2. **Làm Sạch Dữ Liệu**: 🧹 Tiền xử lý và làm sạch dữ liệu thô
-3. **Kỹ Thuật Đặc Trưng**: 🔧 Mã hóa các biến phân loại
-4. **Chia Tập Dữ Liệu**: ✂️ Tạo tập dữ liệu huấn luyện và kiểm tra
-5. **Phân Tích**: 🔍 Phân cụm và phân loại phân khúc giá
+3. **Chia Tập Dữ Liệu**: ✂️ Tạo tập dữ liệu huấn luyện và kiểm tra
+4. **Phân Tích**: 🔍 Phân cụm và phân loại phân khúc giá
 
 ---
 
@@ -56,7 +55,7 @@ Phân cụm và phân loại phân khúc giá của đồng hồ theo các thôn
     -   Chất liệu vành (Bezel Material)
     -   Thương hiệu (Brand)
 
--   **Mã Hóa One-hot + Mã Hóa Mục Tiêu**:
+-   **Mã Hóa One-hot**:
 
     -   Giới tính (Gender)
     -   Bộ máy (Movement)
