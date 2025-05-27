@@ -25,6 +25,8 @@ Phân cụm và phân loại phân khúc giá của đồng hồ theo các thôn
     -   `train_test_split.ipynb`: Chia tập dữ liệu thành tập huấn luyện và kiểm tra
     -   `clustering.ipynb`: Phân tích phân cụm giá đồng hồ
     -   `classification.ipynb`: Mô hình phân loại phân khúc giá đồng hồ
+    -   `gmm.ipynb`: Phân tích phân cụm Gaussian Mixture Model
+    -   `agglomerative_clustering.ipynb`: Phân tích phân cụm Hierarchical Clustering
 
 -   **data/**
 
