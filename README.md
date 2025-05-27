@@ -33,6 +33,8 @@ Phân cụm và phân loại phân khúc giá của đồng hồ theo các thôn
 -   **dataset/**
     -   `train_segmented.csv`: Tập dữ liệu huấn luyện với phân khúc giá (5665 mẫu, 15 cột)
     -   `test_segmented.csv`: Tập dữ liệu kiểm tra với phân khúc giá (1476 mẫu, 15 cột)
+    -   `encoding_params.json`: Tham số mã hóa cho các đặc trưng phân loại
+    -   `predicted_segments.csv`: Kết quả dự đoán phân khúc giá từ mô hình
 
 ---
 
@@ -54,16 +56,20 @@ Phân cụm và phân loại phân khúc giá của đồng hồ theo các thôn
     -   Mặt sau vỏ (Case Back)
     -   Chất liệu vành (Bezel Material)
     -   Thương hiệu (Brand)
+    -   Kiểu đồng hồ (Watch Style)
+    -   Mặt kính (Crystal)
+    -   Kim đồng hồ (Hands)
+    -   Đánh dấu mặt số (Dial Marker)
 
 -   **Mã Hóa One-hot**:
 
     -   Giới tính (Gender)
     -   Bộ máy (Movement)
 
--   **Chỉ Mã Hóa Mục Tiêu**:
-    -   Mặt kính (Crystal)
-    -   Kim đồng hồ (Hands)
-    -   Đánh dấu mặt số (Dial Marker)
+-   **Đặc trưng số**:
+    -   Độ dày vỏ (Case Thickness)
+    -   Đường kính vỏ (Case Diameter)
+    -   Khả năng chống nước (Water Resistance)
 
 ---
 
@@ -83,7 +89,46 @@ Cột giá đã được chuyển đổi thành phân khúc giá (0-4) trong c�
 
 ## 📈 Bài Toán Phân Tích
 
-Hai bài toán phân tích chính sẽ được thực hiện trên tập dữ liệu này:
+Hai bài toán phân tích chính đã được thực hiện trên tập dữ liệu này:
 
-1. **Phân Cụm**: 🔠 Học không giám sát để khám phá các nhóm tự nhiên trong dữ liệu đồng hồ
-2. **Phân Loại**: 🏷️ Học có giám sát để dự đoán phân khúc giá dựa trên các đặc tính của đồng hồ
+### 1. Phân Cụm 🔠
+
+Học không giám sát để khám phá các nhóm tự nhiên trong dữ liệu đồng hồ.
+
+### 2. Phân Loại 🏷️
+
+Học có giám sát để dự đoán phân khúc giá dựa trên các đặc tính của đồng hồ.
+
+#### Các mô hình đã thử nghiệm:
+
+- **K-Nearest Neighbors (KNN)**: Đạt độ chính xác 79.8% với k=9
+- **Random Forest (RF)**: Đạt độ chính xác 89.7% với tham số tối ưu (max_depth=30, n_estimators=253)
+
+#### Đánh giá mô hình trên tập kiểm tra:
+
+| Phân khúc             | Độ chính xác | Độ chính xác (%) |
+|-----------------------|--------------|-----------------|
+| Giá rẻ (Budget)       | 632/656      | 96.34%          |
+| Phổ thông (Affordable)| 426/458      | 93.01%          |
+| Trung cấp (Mid-Range) | 143/188      | 76.06%          |
+| Cao cấp (Premium)     | 101/136      | 74.26%          |
+| Siêu cao cấp (Luxury) | 22/38        | 57.89%          |
+| **Tổng hợp**          | **1324/1476**| **89.70%**      |
+
+#### Đặc trưng quan trọng:
+
+Thương hiệu (brand), chất liệu vành (bezel_material) và mặt kính (crystal) là các đặc trưng quan trọng nhất trong việc xác định phân khúc giá của đồng hồ.
+
+---
+
+## 🔍 Kết Luận
+
+- Mô hình Random Forest cho kết quả tốt nhất với độ chính xác 89.70% trên tập kiểm tra.
+- Phân khúc giá rẻ và phổ thông dễ phân loại nhất với độ chính xác trên 93%.
+- Phân khúc siêu cao cấp khó phân loại nhất, có thể do số lượng mẫu ít hoặc đặc điểm phức tạp.
+- Các đặc trưng liên quan đến thương hiệu và chất liệu có ảnh hưởng lớn nhất đến giá.
+
+Kết quả này có thể được ứng dụng để:
+- Tự động phân loại đồng hồ mới vào các phân khúc giá
+- Hỗ trợ doanh nghiệp định vị sản phẩm trong thị trường
+- Đưa ra chiến lược giá phù hợp dựa trên các đặc tính sản phẩm
