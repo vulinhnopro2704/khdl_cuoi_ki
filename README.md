@@ -28,13 +28,17 @@ Phân cụm và phân loại phân khúc giá của đồng hồ theo các thôn
 
 -   **data/**
 
-    -   `product_cleaned.csv`: Dữ liệu đã làm sạch trước khi phân đoạn
+    -   `link.csv`: Danh sách các liên kết sản phẩm đồng hồ thu thập được
+    -   `raw_data.csv`: Dữ liệu thô thu thập từ web scraping (có thể chứa lỗi và thiếu sót)
+    -   `data_cleaned.csv`: Dữ liệu đã làm sạch trước khi chia dữ liệu
 
 -   **dataset/**
-    -   `train_segmented.csv`: Tập dữ liệu huấn luyện với phân khúc giá (5665 mẫu, 15 cột)
-    -   `test_segmented.csv`: Tập dữ liệu kiểm tra với phân khúc giá (1476 mẫu, 15 cột)
     -   `encoding_params.json`: Tham số mã hóa cho các đặc trưng phân loại
     -   `predicted_segments.csv`: Kết quả dự đoán phân khúc giá từ mô hình
+    -   `raw_data_train.csv`: Tập dữ liệu huấn luyện với phân khúc giá (5665 mẫu, 15 cột) chưa phân loại
+    -   `raw_data_test.csv`: Tập dữ liệu kiểm tra với phân khúc giá (1476 mẫu, 15 cột) chưa phân loại
+    -   `cleaned_data_train.csv`: Tập dữ liệu huấn luyện với phân khúc giá (5665 mẫu, 15 cột) phân loại phân khúc giá
+    -   `cleaned_data_test.csv`: Tập dữ liệu kiểm tra với phân khúc giá (1476 mẫu, 15 cột) phân loại phân khúc giá
 
 ---
 
@@ -49,6 +53,8 @@ Phân cụm và phân loại phân khúc giá của đồng hồ theo các thôn
 
 ## 🛠️ Kỹ Thuật Đặc Trưng
 
+**Smoothing Encoding**
+
 -   **Mã Hóa Mục Tiêu (Target Encoding)**:
 
     -   Chất liệu vỏ (Case Material)
@@ -57,19 +63,16 @@ Phân cụm và phân loại phân khúc giá của đồng hồ theo các thôn
     -   Chất liệu vành (Bezel Material)
     -   Thương hiệu (Brand)
     -   Kiểu đồng hồ (Watch Style)
-    -   Mặt kính (Crystal)
-    -   Kim đồng hồ (Hands)
-    -   Đánh dấu mặt số (Dial Marker)
 
 -   **Mã Hóa One-hot**:
 
     -   Giới tính (Gender)
     -   Bộ máy (Movement)
 
--   **Đặc trưng số**:
-    -   Độ dày vỏ (Case Thickness)
-    -   Đường kính vỏ (Case Diameter)
-    -   Khả năng chống nước (Water Resistance)
+-   **Chỉ Mã Hóa Mục Tiêu**:
+    -   Mặt kính (Crystal)
+    -   Kim đồng hồ (Hands)
+    -   Đánh dấu mặt số (Dial Marker)
 
 ---
 
